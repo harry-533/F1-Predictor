@@ -1,0 +1,78 @@
+{% load static %}
+{% load custom_tags %}
+{% get_tracks as tracks %}
+{% get_drivers as drivers %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'prediction.css' %}">
+    <script src="{% static 'driver.js' %}"></script>
+    <title>Driver Prediction</title>
+</head>
+<body class="driver-body">
+    <a class="back" href="{% url 'index' %}">&lt Back</a>
+    <div class="container">
+        <div class="left">
+            <div class="vertical gradient-2 new-prediction">
+                <div class="prediction-title">F1 Predictor</div>
+                <div class="current-prediction">
+                    <div class="current-subtitle">Current Prediction</div>
+                    <div class="current-driver" id="driver-info" data-driver-id="{{ driver.driverId }}">Driver: <span class="current-driver-name">{{ driver.driverName }}</span></div>
+                    <div class="current-track">Track: <span class="current-track-name">{{ track.trackCity }}, {{ track.trackCountry }}</span></div>
+                    <div class="new-subtitle">New Prediction</div>
+                </div>
+                <div class="driver">
+                    <form method="post" name="driver-choices">
+                        {% csrf_token %}
+                        <div id="driver-choices">
+                            <div class="selection-container">
+                                <select class="gradient selection-driver-2" name="driver" required>
+                                    <option value="" disabled selected>Select a Driver</option>
+                                    {% for driver in drivers %}
+                                        <option value="{{ driver.driverId }}">{{ driver.driverName }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="selection-container">
+                                <select class="gradient selection-driver" name="track" required>
+                                    <option value="" disabled selected>Select an Track</option>
+                                    {% for track in tracks %}
+                                        <option value="{{ track.trackId }}">{{ track.trackCity }} - {{ track.trackCountry }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <button class="submit-color submit-choices-driver" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="vertical gradient-2 prediction-result">
+                <div class="prediction-title">Prediction</div>
+                <div class="carbon prediction-quali" id="carbon" data-base-url="{% static 'images/' %}">
+                    <div class="prediction-subtitle">Qualifying</div>
+                    <div class="quali-result">{{ quali }}<span class="race-suffix">{{ suffix1 }}</span></div>
+                </div>
+                <div class="carbon prediction-race">
+                    <div class="prediction-subtitle">Race</div>
+                    <div class="race-result">{{ result }}<span class="race-suffix">{{ suffix2 }}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="horizontal gradient-2 driver-desc">
+                <div class="driver-profile">
+                    <div class="driver-title">{{ driver.driverName }} - {{ constructor.constructorName }}</div>
+                    <img src="{% static 'images/driver_profile/' %}{{ driverProfile.driverImage }}" style="width:100%;">
+                </div>
+            </div>
+            <div class="horizontal gradient-2 track-desc">
+                <div class="track-profile">
+                    <div class="track-title">{{ track.trackName }}</div>
+                    <img src="{% static 'images/track_profile/' %}{{ trackProfile.trackImage }}" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

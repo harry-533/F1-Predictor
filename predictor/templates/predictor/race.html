@@ -1,0 +1,115 @@
+{% load static %}
+{% load custom_tags %}
+{% get_tracks as tracks %}
+{% get_drivers as drivers %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'prediction.css' %}">
+    <script src="{% static 'prediction.js' %}"></script>
+    <title>Race Prediction</title>
+</head>
+<body class="driver-body">
+    <a class="back" href="{% url 'index' %}">&lt Back</a>
+    <div class="container">
+        <div class="left">
+            <div class="vertical gradient-2 new-prediction">
+                <div class="prediction-title">F1 Predictor</div>
+                <div class="current-prediction">
+                    <div class="current-subtitle">Current Prediction</div>
+                    <div class="current-track">Track: <span class="current-track-name">{{ track.trackCity }}, {{ track.trackCountry }}</span></div>
+                    <div class="new-race-subtitle">New Prediction</div>
+                </div>
+                <div class="driver">
+                    <form method="post" name="driver-choices">
+                        {% csrf_token %}
+                        <div id="driver-choices">
+                            <div class="selection-container">
+                                <select class="gradient selection-race" name="track" id="track-select" required>
+                                    <option value="" disabled selected>Select an Track</option>
+                                    {% for track in tracks %}
+                                        <option value="{{ track.trackId }}">{{ track.trackCity }} - {{ track.trackCountry }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div id="driver-image-container">
+                                <img id="driver-image" data-base-url="{% static 'images/tracks/' %}" src="">
+                            </div>
+                        </div>
+                        <button class="submit-color submit-choices-race" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="vertical gradient-2 prediction-result">
+                <div class="prediction-title-2">Prediction</div>
+                <div class="carbon quali-pred-container" id="quali-scroll-box">
+                    <div class="quali-scroll-box">
+                        <div class="prediction-quali-subtitle">Qualifying</div>
+                        <ul>
+                            {% for key, value in quali %}
+                                <li><span class="loop-counter">{{ forloop.counter }}</span> - {{ key }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="quali-expand-button" id="quali-expand-button" onclick="qualiExpandList()">+</div>
+                </div>
+                <div class="carbon race-pred-container" id="race-scroll-box">
+                    <div class="quali-scroll-box">
+                        <div class="prediction-race-subtitle">Result</div>
+                        <ul>
+                            {% for key, value in result %}
+                                <li><span class="loop-counter">{{ forloop.counter }}</span> - {{ key }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="race-expand-button" id="race-expand-button" onclick="resultExpandList()">+</div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="horizontal gradient-2 standing-results">
+                <div class="standing-title">Standings</div>
+                <div class="standings">
+                    <div class="carbon driver-standings" id="quali-scroll-box">
+                        <div class="standing-scroll-box">
+                            <div class="standing-subtitle">Drivers</div>
+                            <ul>
+                                {% for key, value in driverStanding %}
+                                <li>
+                                    <div>
+                                        <span class="loop-counter">{{ forloop.counter }}</span> - {{ key }}
+                                    </div>
+                                    <span class="value">{{ value }}<span class="pts">pts</span></span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="carbon constructor-standings" id="race-scroll-box">
+                        <div class="standing-scroll-box">
+                            <div class="standing-subtitle">Constructors</div>
+                            <ul>
+                                {% for key, value in constructorStanding %}
+                                <li>
+                                    <div>
+                                        <span class="loop-counter">{{ forloop.counter }}</span> - {{ key }}
+                                    </div>
+                                    <span class="value">{{ value }}<span class="pts">pts</span></span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal gradient-2 track-desc">
+                <div class="track-profile">
+                    <div class="track-title">{{ track.trackName }}</div>
+                    <img src="{% static 'images/track_profile/' %}{{ trackProfile.trackImage }}" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

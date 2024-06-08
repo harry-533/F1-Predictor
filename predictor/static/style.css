@@ -1,0 +1,214 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: 'regularF1';
+    src: url('fonts/Formula1-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'boldF1';
+    src: url('fonts/Formula1-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'blackF1';
+    src: url('fonts/Formula1-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.index-body {
+    background-image: url('images/teambg/haas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.driver {
+    display: block;
+}
+
+.race {
+    display: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.prediction-title {
+    font-family: 'boldF1', sans-serif;
+    font-size: 40px;
+    padding-top: 30px;
+    color: white;
+    /* color: transparent;
+    background-image: linear-gradient(144deg, #8B4513, #FFD700 50%, #8B4513);
+    -webkit-background-clip: text;
+    background-clip: text; */
+}
+
+
+.prediction-choices {
+    text-align: center;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 550px;
+    width: 400px;
+}
+
+.rord-choice {
+    display: flex;
+    padding: 60px 0px 0px 0px;
+}
+
+.chose-race,
+.chose-driver {
+  align-items: center;
+  float: left;
+  background-image: linear-gradient(144deg, #ffffff, #b0b0b0 50%, #ffffff);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: 'boldF1', sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chose-driver {
+    margin-right: 40px;
+}
+
+.chose-race:active,
+.chose-race:hover,
+.chose-driver:active,
+.chose-driver:hover {
+  outline: 0;
+}
+
+.chose-race span,
+.chose-driver span {
+  background-color: rgb(29, 29, 29);
+  margin-top: 1px;
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 38%;
+  transition: 300ms;
+}
+
+.chose-race.clicked span,
+.chose-driver.clicked span {
+  background-image: linear-gradient(144deg, #ffffff, #b0b0b0 50%, #ffffff);
+  color: rgb(83, 83, 83);
+  transition: none;
+}
+
+.chose-race:hover span,
+.chose-driver:hover span {
+  background: none;
+}
+
+.selection-container,
+.selection-container-2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 290px;
+    height: 100px;
+}
+
+.selection-container-2,
+.selection-container-3 {
+    margin-top: 50px;
+}
+
+.selection-container-3 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 290px;
+}
+
+.selection-race,
+.selection-driver {
+    font-family: 'regularF1', sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 50px;
+    background-color: rgb(29, 29, 29);
+    color: white;
+    border-image: linear-gradient(144deg, #ffffff, #b0b0b0 50%, #ffffff) 30;
+    border-width: 1.5px;
+    max-height: 100px;
+}
+
+.submit-choices-driver,
+.submit-choices-race {
+    font-family: 'boldF1', sans-serif;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(29, 29, 29);
+    width: 150px;
+    height: 45px;
+    border-color: #ffffff;
+    border-radius: 5px;
+    border-width: 3px;
+}
+
+.submit-choices-driver:hover,
+.submit-choices-race:hover {
+    cursor: pointer;
+}
+
+.curved {
+    position: absolute;
+    background-image: linear-gradient(144deg, #ffffff, #b0b0b0 50%, #ffffff);
+    height: 550px;
+    width: 400px;
+    border-radius: 10px;
+    z-index: -1;
+}
+
+.curved2 {
+    position: absolute;
+    background-color: black;
+    height: 540px;
+    width: 390px;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+#driver-image {
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px
+}

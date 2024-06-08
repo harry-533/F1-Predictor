@@ -1,0 +1,544 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.driver-body {
+    background-color: rgb(0, 0, 0);
+}
+
+@font-face {
+    font-family: 'regularF1';
+    src: url('fonts/Formula1-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'boldF1';
+    src: url('fonts/Formula1-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'blackF1';
+    src: url('fonts/Formula1-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.carbon {
+    background-image: url('images/carbon.jpg'), 
+    linear-gradient(144deg, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
+}
+
+.gradient {
+    border-image: linear-gradient(to right, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff) 30;
+    background-color: rgb(29, 29, 29);
+}
+
+.gradient-2 {
+    background-image: linear-gradient(black, black),
+    linear-gradient(144deg, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
+}
+
+.submit-color {
+    background-color: rgb(29, 29, 29);
+    border-color: #ffffff;
+}
+
+.back {
+    position: absolute;
+    font-size: 22px;
+    font-family: 'boldF1', sans-serif;
+    color: white;
+    top: 20px;
+    left: 40px;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    width: 200vh;
+    height: 90vh;
+    min-height: 90vh;
+    min-width: 200vh;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.left {
+    flex: 2;
+}
+
+.right {
+    flex: 2;
+}
+
+.vertical {
+    flex: 2;
+    background-color: #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 15px; 
+    max-width: 450px;
+}
+
+.horizontal {
+    flex: 1;
+    background-color: #a9a9a9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.new-prediction {
+    border: solid 5px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.prediction-result {
+    border: solid 5px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    gap: 22px;
+}
+
+.driver-desc {
+    border: solid 5px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.track-desc {
+    border: solid 5px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.prediction-title {
+    font-family: 'boldF1', sans-serif;
+    white-space: nowrap;
+    font-size: 45px;
+    color: white;
+    margin-top: 8%;
+    margin-bottom: 7%;
+}
+
+.prediction-title-2 {
+    font-family: 'boldF1', sans-serif;
+    white-space: nowrap;
+    font-size: 45px;
+    color: white;
+    margin-top: 8%;
+}
+
+.current-prediction {
+    color: white;
+    white-space: nowrap;
+    margin-top: 10%;
+    margin-left: 4%;
+    font-family: 'boldF1', sans-serif;
+    width: 75%;
+}
+
+.current-subtitle,
+.new-subtitle {
+    font-size: 25px;
+}
+
+.current-driver,
+.current-track {
+    font-size: 19.5px;
+    margin-top: 3%;
+    white-space: nowrap;
+}
+
+.current-driver-name,
+.current-track-name {
+    font-size: 18px;
+    color: #d7d7d7;
+    font-family: 'regularF1', sans-serif;
+    white-space: wrap;
+}
+
+.new-subtitle {
+    color: white;
+    font-family: 'boldF1', sans-serif;
+    margin-top: 25%;
+}
+
+.new-race-subtitle {
+    font-size: 25px;
+    color: white;
+    font-family: 'boldF1', sans-serif;
+    margin-top: 35.5%;
+}
+
+.selection-driver-2 {
+    font-family: 'regularF1', sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 20%;
+    margin-top: 25%;
+    height: 60px;
+    width: 300px;
+    color: white;
+    border-width: 1.5px;
+    max-height: 100px;
+}
+
+.selection-driver {
+    font-family: 'regularF1', sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 20%;
+    height: 60px;
+    width: 300px;
+    color: white;
+    border-width: 1.5px;
+    max-height: 100px;
+}
+
+.selection-race {
+    font-family: 'regularF1', sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 30px;
+    height: 60px;
+    width: 300px;
+    margin-bottom: 20px;
+    color: white;
+    border-width: 1.5px;
+    max-height: 100px;
+}
+
+.submit-choices-driver {
+    position: absolute;
+    bottom: 70px;
+    font-family: 'boldF1', sans-serif;
+    font-size: 20px;
+    color: white;
+    width: 200px;
+    height: 55px;
+    margin-left: 50px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-width: 3px;
+}
+
+.submit-choices-race {
+    position: absolute;
+    bottom: 70px;
+    font-family: 'boldF1', sans-serif;
+    font-size: 20px;
+    color: white;
+    width: 200px;
+    height: 55px;
+    margin-left: 50px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-width: 3px;
+}
+
+.submit-choices-driver:hover {
+    cursor: pointer;
+}
+
+.submit-choices-race:hover {
+    cursor: pointer;
+}
+
+.prediction-quali,
+.prediction-race {
+    width: 300px;
+    height: 300px;
+    border: solid 2px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.quali-result,
+.race-result {
+    font-family: 'boldF1', sans-serif;
+    color: white;
+    font-size: 130px;
+}
+
+.race-suffix {
+    font-family: 'blackF1', sans-serif;
+    font-size: 70px;
+}
+
+.prediction-subtitle {
+    font-family: 'boldF1', sans-serif;
+    color: white;
+    font-size: 40px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.driver-profile,
+.track-profile {
+    height: 390px;
+    width: 800px;
+}
+
+.driver-title {
+    margin-top: 2%;
+    margin-bottom: 1.5%;
+    color: white;
+    font-family: 'boldF1', sans-serif;
+    font-size: 43px;
+}
+
+.track-title {
+    margin-top: 2%;
+    margin-bottom: 1.5%;
+    color: white;
+    font-family: 'boldF1', sans-serif;
+    font-size: 42px;
+}
+
+.quali-pred-container,
+.race-pred-container,
+.driver-standings,
+.constructor-standings {
+    position: relative;
+    border: solid 2px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border-radius: 10px;
+    width: 300px; 
+    height: 300px; 
+    overflow: hidden;
+}
+
+.quali-pred-container {
+    margin-top: 7%;
+}
+
+.quali-scroll-box {
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.quali-scroll-box ul li {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    color: white;
+    font-family: 'regularF1', sans-serif;
+    font-size: 20px;
+    padding: 5px 5px 2px 5px;
+}
+
+.standing-scroll-box {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.standing-scroll-box ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    color: white;
+    font-family: 'regularF1', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.quali-expand-button,
+.race-expand-button {
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    top: 8px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.loop-counter {
+    font-family: 'boldF1', sans-serif;
+}
+
+.prediction-quali-subtitle,
+.prediction-race-subtitle,
+.standing-subtitle {
+    color: white;
+    font-family: 'boldF1', sans-serif;
+    font-size: 25px;
+    padding-top: 5px;
+    margin-left: 65px;
+}
+
+.prediction-race-subtitle {
+    margin-left: 85px;
+}
+
+.quali-scroll-box::-webkit-scrollbar {
+    width: 10px;
+}
+
+.quali-scroll-box::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px;
+}
+
+.quali-scroll-box::-webkit-scrollbar-thumb {
+    background: #454545;
+    border-radius: 5px;
+}
+
+.quali-scroll-box::-webkit-scrollbar-thumb:hover {
+    background: #3e3e3e;
+}
+
+.standing-scroll-box::-webkit-scrollbar {
+    width: 10px;
+}
+
+.standing-scroll-box::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px;
+}
+
+.standing-scroll-box::-webkit-scrollbar-thumb {
+    background: #454545;
+    border-radius: 5px;
+}
+
+.standing-scroll-box::-webkit-scrollbar-thumb:hover {
+    background: #3e3e3e;
+}
+
+.standing-results {
+    border: solid 5px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.standings {
+    display: flex;
+    gap: 35px;
+}
+
+.driver-standings,
+.constructor-standings {
+    flex: 1;
+    border: solid 2px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border-radius: 10px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.standing-title {
+    margin-bottom: 3%;
+    color: white;
+    font-family: 'boldF1', sans-serif;
+    font-size: 42px;
+}
+
+.driver-standings,
+.constructor-standings {
+    width: 400px;
+    height: 280px;
+}
+
+.standing-scroll-box ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.loop-counter {
+    font-family: 'boldF1', sans-serif;
+}
+
+.value {
+    display: flex;
+    align-items: center;
+    font-family: 'regularF1', sans-serif;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.pts {
+    font-size: 16px;
+    margin-left: 5px;
+    font-family: 'boldF1', sans-serif;
+}
+
+.standing-subtitle {
+    text-align: center;
+    margin-left: 0px;
+}
+
+.driver-image {
+    display: none;
+    width: 100px;
+    height: auto;
+}
+
+@media (max-width: 950px) {
+    .right {
+        display: none;
+    }
+
+    .new-prediction {
+        display: none;
+    }
+
+    .vertical {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 951px ) and (max-width:1800px) {
+    .right {
+        display: none;
+    }
+
+    .left {
+        margin-left: 25%;
+        margin-right: auto;
+    }
+}

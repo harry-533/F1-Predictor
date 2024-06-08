@@ -1,0 +1,67 @@
+{% load static %}
+{% load custom_tags %}
+{% get_tracks as tracks %}
+{% get_drivers as drivers %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'index.js' %}"></script>
+    <title>Formula 1 Prediction</title>
+</head>
+<body class="index-body">
+    <div class="container">
+        <div class="prediction-choices">
+            <div class="prediction-title">F1 Predictor</div>
+            <div class="rord-choice"> 
+                <button class="chose-driver" role="button"><span class="text">Driver</span></button>
+                <button class="chose-race" role="button"><span class="text">Race</span></button>
+            </div>
+            <div class="driver">
+                <form method="post" name="driver-choices">
+                    {% csrf_token %}
+                    <div id="driver-choices">
+                        <div class="selection-container-2">
+                            <select class="selection-driver" name="driver" required>
+                                <option value="" disabled selected>Select a Driver</option>
+                                {% for driver in drivers %}
+                                    <option value="{{ driver.driverId }}">{{ driver.driverName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="selection-container">
+                            <select class="selection-driver" name="track" required>
+                                <option value="" disabled selected>Select an Track</option>
+                                {% for track in tracks %}
+                                    <option value="{{ track.trackId }}">{{ track.trackCity }} - {{ track.trackCountry }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <button class="submit-choices-driver" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="race">
+                <form method="post" name="race-choices">
+                    {% csrf_token %}
+                    <div class="selection-container-3">
+                        <select class="selection-race" name="track" id="track-select" required>
+                            <option value="" disabled selected>Select an Track</option>
+                            {% for track in tracks %}
+                                <option value="{{ track.trackId }}">{{ track.trackCity }} - {{ track.trackCountry }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="driver-image-container">
+                        <img id="driver-image" data-base-url="{% static 'images/tracks/' %}" src="">
+                    </div>
+                    <button class="submit-choices-race" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="curved"></div>
+    <div class="curved2"></div>
+</body>
+</html>
