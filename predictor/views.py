@@ -4,8 +4,15 @@ import requests
 import math
 
 
-# Create your views here.
 def index(request):
+    url = 'https://ergast.com/api/f1/current/results.json?limit=1000'
+    response = requests.get(url)
+    data = response.json()['MRData']['RaceTable']['Races']
+
+    round = CurrentSeason.objects.get(constructorId = 'rb')
+    if len(data) != round.roundNumber:
+        loadCurrentData()
+        
     if request.method == "POST":
         if 'driver' in request.POST:
             driverId = request.POST['driver']
@@ -30,7 +37,6 @@ def driver(request, driverId, trackId):
     suffix1, suffix2 = suffix(quali, result)
     driverProfile = DriverProfile.objects.get(driverId = driverId)
     trackProfile = TrackProfile.objects.get(trackId = trackId)
-    # gradient, color, color2 = colourScheme(constructor.constructorId)
 
     return render(request, "predictor/driver.html", {
         'driver': driver,
@@ -220,35 +226,7 @@ def standings(prediction):
 
     return driver, constructor
 
-def colourScheme(constructorId):
-    constructorDict = {
-            "williams": {"gradient": '144deg, #3399ff, #4da6ff, #66b3ff, #4da6ff, #3399ff', "color1": '#3399ff', "color2": '#001020'},
-            "red_bull": {"gradient": '144deg, #002245, #003366, #004080, #003366, #002245', "color1": '#002245', "color2": '#000d1a'},
-            "sauber": {"gradient": '144deg, #00FF00, #00FF33, #00FF66, #00FF33, #00FF00', "color1": '#00FF00', "color2": '#001900'},
-            "mercedes": {"gradient": '144deg, #01DFC0, #01DFA0, #01DF80, #01DFA0, #01DFC0', "color1": '#01DFC0', "color2": '#001a17'},
-            "mclaren": {"gradient": '144deg, #ff6f00, #ff8f00, #ffa726, #ff8f00, #ff6f00', "color1": '#ff6f00', "color2": '#1c0c00'},
-            "haas": {"gradient": '144deg, #f0f0f0, #e0e0e0, #d0d0d0, #e0e0e0, #f0f0f0', "color1": '#f0f0f0', "color2": '#1d1d1d'},
-            "ferrari": {"gradient": '144deg, #ff0000, #cc0000, #990000, #cc0000, #ff0000', "color1": '#ff0000', "color2": '#160000'},
-            "aston_martin": {"gradient": '144deg, #004d00, #005c00, #006b00, #005c00, #004d00', "color1": '#004d00', "color2": '#001a00'},
-            "alpine": {"gradient": '144deg, #0000FF, #007FFF, #00AFFF, #007FFF, #0000FF', "color1": '#0000FF', "color2": '#000019'},
-            "rb": {"gradient": '144deg, #06396c, #27408B, #7AA8E6, #27408B, #06396c', "color1": '#06396c', "color2": '#000d1a'}
-    }
-
-    for key, value in constructorDict:
-        if key == constructorId:
-            gradient = constructorDict[key]['gradient']
-            color = constructorDict[key]['color1']
-            color2 = constructorDict[key]['color2']
-
-            return gradient, color, color2
-    
-    return None
-
-        
-
-
 def loadDatabase(request):
-    # checks the current season data is upto date, updates if not
     url = 'https://ergast.com/api/f1/current/results.json?limit=1000'
     response = requests.get(url)
     data = response.json()['MRData']['RaceTable']['Races']
@@ -257,8 +235,6 @@ def loadDatabase(request):
     if len(data) != round.roundNumber:
         loadCurrentData()
 
-
-    # gets the average result each season for the last 5 seasons
     dnf = ['R', 'D', 'E', 'W', 'F', 'N']
 
     for i in range(5):
